@@ -1,0 +1,114 @@
+
+
+/* Establecemos el fondo de la página */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: #000;  /* Fondo negro para simular el cielo nocturno */
+    overflow: hidden;  /* Para evitar barras de desplazamiento */
+    position: relative;
+}
+
+
+.star {
+    position: absolute;
+    top: -10px;
+    left: calc(100% * var(--star-left));
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: white;
+    animation: fall var(--fall-duration) linear infinite;
+}
+
+/* Keyframes para el movimiento de cada estrella */
+@keyframes fall {
+    0% {
+        top: -10px;
+        opacity: 1;
+    }
+    100% {
+        top: 100vh;
+        opacity: 0;
+    }
+}
+
+
+
+/* Estilos para el contenido */
+.container {
+    text-align: center;
+    flex-grow: 1;
+    z-index: 1; /* Aseguramos que el contenido esté sobre la nieve */
+    position: relative;
+}
+
+h1 {
+    font-size: 3em;
+    color: #fff;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo del conteo regresivo */
+#countdown {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px; /* Separación superior para que no se pegue al título */
+}
+
+.time-box {
+    background-color: #32cd32; /* Verde navideño */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-size: 2em;
+    transition: transform 0.3s ease;
+}
+
+.time-box span {
+    display: block;
+    font-size: 3em;
+    font-weight: bold;
+    color: #fff;
+}
+
+.time-box p {
+    font-size: 1em;
+    color: #fff;
+}
+
+/* Efecto de hover para las cajas de tiempo */
+.time-box:hover {
+    transform: scale(1.05);
+}
+
+footer {
+    margin-top: 30px;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 20px;
+    z-index: 10; /* Asegúrate de que el footer esté por encima de otros elementos */
+}
+
+.back-button {
+    background-color: #b22222; /* Rojo navideño */
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.2em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    z-index: 20; /* Aseguramos que el botón esté por encima del footer */
+}
+
+
+.back-button:hover {
+    background-color: #8b0000; /* Rojo más oscuro para el hover */
+    transform: scale(1.1);
+}
