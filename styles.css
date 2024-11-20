@@ -1,5 +1,3 @@
-
-
 /* Establecemos el fondo de la página */
 body {
     margin: 0;
@@ -10,29 +8,73 @@ body {
     position: relative;
 }
 
-
+/* Estrellas */
 .star {
     position: absolute;
     top: -10px;
-    left: calc(100% * var(--star-left));
+    left: calc(100% * var(--star-left));  /* Posición horizontal aleatoria */
     width: 5px;
     height: 5px;
     border-radius: 50%;
     background-color: white;
     animation: fall var(--fall-duration) linear infinite;
+    opacity: 0;  /* Inicia con opacidad 0 */
+    animation-delay: calc(var(--star-delay) * 2s);  /* Retraso aleatorio para cada estrella */
 }
 
 /* Keyframes para el movimiento de cada estrella */
 @keyframes fall {
     0% {
         top: -10px;
-        opacity: 1;
+        opacity: 1;  /* Empieza visible */
     }
     100% {
-        top: 100vh;
-        opacity: 0;
+        top: 100vh;  /* Se mueve hasta el fondo de la pantalla */
+        opacity: 0;  /* Se desvanece mientras cae */
     }
 }
+
+
+
+.home-container {
+    text-align: center;
+}
+
+.flags-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.flag-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.flag-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.flag-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.flag-card p {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
 
 
 
