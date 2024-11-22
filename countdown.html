@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuenta Regresiva para Navidad</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Contenedor de copos de nieve generado dinámicamente -->
+    <div class="stars" id="stars"></div>
+
+    <div class="container">
+        <h1>Cuenta Regresiva para Navidad</h1>
+        <div id="countdown">
+            <div class="time-box">
+                <span id="days"></span>
+                <p>Días</p>
+            </div>
+            <div class="time-box">
+                <span id="hours"></span>
+                <p>Horas</p>
+            </div>
+            <div class="time-box">
+                <span id="minutes"></span>
+                <p>Minutos</p>
+            </div>
+            <div class="time-box">
+                <span id="seconds"></span>
+                <p>Segundos</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón para regresar a la página de inicio -->
+
+    <footer>
+        <button onclick="window.location.href='index.html'" class="back-button">Regresar a la Página de Inicio</button>
+    </footer>
+
+    <script src="scriptCountdown.js"></script>
+    <script src="star.js"> </script>
+
+</body>
+</html>
