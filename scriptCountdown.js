@@ -1,61 +1,53 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Función que calcula el tiempo restante para Navidad
-    function countdown() {
-        // Obtener los parámetros de la URL
+    function parseTimezoneOffset(timezone) {
+        const match = timezone.match(/UTC([+ -]\d{2}):(\d{2})/);
+        if (!match) return null;
+
+        const hours = parseInt(match[1], 10);
+        const minutes = parseInt(match[2], 10);
+        return (hours * 60 + minutes) * 60 * 1000; // Conversión a milisegundos
+    }
+
+    function updateCountdown() {
         const urlParams = new URLSearchParams(window.location.search);
-        const country = urlParams.get('country'); // País
-        const timezone = urlParams.get('timezone'); // Zona horaria
+        const country = urlParams.get('country');
+        const timezone = urlParams.get('timezone');
 
-        // Ajustar la hora de Navidad según la zona horaria del país
-        const christmasDate = new Date(`November 25, 2024 00:00:00 UTC`);  // Asegúrate de que la fecha base esté en UTC
-        christmasDate.setHours(christmasDate.getHours() + getTimezoneOffset(timezone)); // Ajusta la fecha según la zona horaria
+        if (!country || !timezone) {
+            console.error("Faltan parámetros en la URL: 'country' y/o 'timezone'.");
+            return;
+        }
 
-        console.log(`Fecha de Navidad en ${country}: ${christmasDate}`);
+        const offset = parseTimezoneOffset(timezone);
+        if (offset === null) {
+            console.error('Formato de huso horario no válido:', timezone);
+            return;
+        }
 
-        // Fecha actual en la zona horaria seleccionada
-        const now = new Date();
+        const nowUTC = new Date();
+        const countryTime = new Date(nowUTC.getTime() + offset);
 
-        // Calcular la diferencia en milisegundos
-        const timeDifference = christmasDate - now;
+        const christmasDate = new Date(Date.UTC(2024, 11, 25, 0, 0, 0)); // Navidad UTC
+        const remainingTime = christmasDate - countryTime;
 
-        // Si la diferencia es negativa, ya ha pasado la fecha de Navidad
-        if (timeDifference <= 0) {
+        if (remainingTime <= 0) {
             document.getElementById('countdown').innerHTML = "¡Feliz Navidad!";
             return;
         }
 
-        // Cálculos de días, horas, minutos y segundos
-        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+        const seconds = Math.floor(remainingTime / 1000);
+        const days = Math.floor(seconds / (60 * 60 * 24));
+        const hours = Math.floor((seconds % (60 * 60 * 24)) / (60 * 60));
+        const minutes = Math.floor((seconds % (60 * 60)) / 60);
+        const secs = seconds % 60;
 
-        // Actualizar los valores en la página
         document.getElementById('days').textContent = days;
         document.getElementById('hours').textContent = hours;
         document.getElementById('minutes').textContent = minutes;
-        document.getElementById('seconds').textContent = seconds;
+        document.getElementById('seconds').textContent = secs;
     }
 
-    // Función para obtener el desplazamiento de la zona horaria en horas
-    function getTimezoneOffset(timezone) {
-        // Aquí debes ajustar el cálculo dependiendo del formato del parámetro "timezone"
-        // Ejemplo: "GMT-03:00", "GMT+02:00", etc.
-        const offsetSign = timezone.charAt(3);  // El signo + o -
-        const offsetHour = parseInt(timezone.substring(4, 6), 10);  // Las dos primeras cifras después de GMT
-        const offsetMinutes = parseInt(timezone.substring(7, 9), 10);  // Las dos últimas cifras después de GMT
-
-        let offset = offsetHour + (offsetMinutes / 60);  // Convertir a horas decimales
-        if (offsetSign === '-') {
-            offset = -offset; // Si el signo es negativo, restamos el desplazamiento
-        }
-
-        return offset;
-    }
-
-    // Actualizar la cuenta regresiva cada segundo
-    setInterval(countdown, 1000);
-
-    // Llamar a la función una vez al cargar para mostrar la cuenta regresiva
-    countdown();
+    // Ejecutar inmediatamente y actualizar cada segundo
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
 });
