@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
     const countries = ['argentina', 'brazil', 'mexico', 'france', 'japan']; // Lista de países
+
+    const APICOUNTRIES = 'https://restcountries.com/v3.1/all'
+
+
     const flagsContainer = document.getElementById('flags-container'); // Contenedor de las tarjetas
 
     // Iteramos sobre la lista de países
