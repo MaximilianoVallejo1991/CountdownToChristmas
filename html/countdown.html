@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cuenta Regresiva para Navidad</title>
-    <link rel="stylesheet" href="styleCountdown.css">
+    <link rel="stylesheet" href="../css/countdownStyles.css">
 </head>
 <body>
-    <!-- Contenedor de copos de nieve generado dinámicamente -->
-    <div class="stars" id="stars"></div>
-
+    <div class="snowfall" id="snowfall"></div>
     <div class="container">
         <h1>Cuenta Regresiva para Navidad</h1>
         <div id="countdown">
@@ -32,14 +30,12 @@
         </div>
     </div>
 
-    <!-- Botón para regresar a la página de inicio -->
-
     <footer>
-        <button onclick="window.location.href='index.html'" class="back-button">Regresar a la Página de Inicio</button>
+        <button onclick="window.location.href='home.html'" class="back-button">Regresar a la Página de Inicio</button>
     </footer>
 
-    <script src="scriptCountdown.js"></script>
-    <script src="star.js"> </script>
+    <script src="../js/countdownTimer.js"></script>
+    <script src="../js/snowfall.js"></script>
 
 </body>
 </html>
