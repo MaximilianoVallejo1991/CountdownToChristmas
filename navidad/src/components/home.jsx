@@ -11,6 +11,9 @@ function Home() {
       .catch(console.error);
   }, []);
 
+
+  
+
   return (
     <div className="home-container">
       <h1>Bienvenidos a la Cuenta Regresiva para Navidad</h1>
