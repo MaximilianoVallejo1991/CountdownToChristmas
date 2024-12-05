@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // Para manejar navegación en React Router
 import "./../styles/countdownStyles.css";
-import Snowfall from "./../components/Snowfall.jsx";
+import Snowfall from "./Snowfall";
 
 function Countdown() {
   const [timeRemaining, setTimeRemaining] = useState({});
