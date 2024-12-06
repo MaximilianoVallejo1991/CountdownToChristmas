@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchCountries } from "../utils/fetchCountries";
-import FlagCard from "./FlagCard";
+import { FlagCard } from "./FlagCard";
 import "./../styles/homeStyles.css";
 import Snowfall from "./Snowfall";
 
@@ -20,7 +20,8 @@ function Home() {
   return (
     
     <div className="home-container">
-        <Snowfall />
+
+
       <h1>Bienvenidos a la Cuenta Regresiva para Navidad</h1>
       <p>Haz clic en la bandera para comenzar</p>
       <div className="flags-container">
