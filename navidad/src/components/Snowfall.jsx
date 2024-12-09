@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./../styles/countdownStyles.css"; // Asegúrate de que los estilos estén correctamente vinculados.
+
 
 const Snowfall = () => {
   useEffect(() => {

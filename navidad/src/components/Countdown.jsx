@@ -1,8 +1,9 @@
-
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // Para manejar navegación en React Router
 import "./../styles/countdownStyles.css";
 import Snowfall from "./Snowfall";
+
+
 
 function Countdown() {
   const [timeRemaining, setTimeRemaining] = useState({});
@@ -34,7 +35,7 @@ function Countdown() {
   }, [timezone]);
 
   function parseTimezoneOffset(offset) {
-    const match = offset.match(/([+-])(\d{2}):?(\d{2})/);
+    const match = offset.match(/([+ -])(\d{2}):?(\d{2})/);
     if (!match) return 0;
 
     const sign = match[1] === "+" ? 1 : -1;
@@ -46,31 +47,34 @@ function Countdown() {
   if (!timeRemaining) return <h1>¡Feliz Navidad!</h1>;
 
   return (
-    <div className="container">
-      <h1>Cuenta Regresiva para Navidad</h1>
-      <div id="countdown">
-        <div className="time-box">
-          <span>{timeRemaining.days}</span>
-          <p>Días</p>
+    <div className="countdown-page">
+      <Snowfall />
+      <div className="container">
+        <h1>Cuenta Regresiva para Navidad</h1>
+        <div id="countdown">
+          <div className="time-box">
+            <span>{timeRemaining.days}</span>
+            <p>Días</p>
+          </div>
+          <div className="time-box">
+            <span>{timeRemaining.hours}</span>
+            <p>Horas</p>
+          </div>
+          <div className="time-box">
+            <span>{timeRemaining.minutes}</span>
+            <p>Minutos</p>
+          </div>
+          <div className="time-box">
+            <span>{timeRemaining.seconds}</span>
+            <p>Segundos</p>
+          </div>
         </div>
-        <div className="time-box">
-          <span>{timeRemaining.hours}</span>
-          <p>Horas</p>
-        </div>
-        <div className="time-box">
-          <span>{timeRemaining.minutes}</span>
-          <p>Minutos</p>
-        </div>
-        <div className="time-box">
-          <span>{timeRemaining.seconds}</span>
-          <p>Segundos</p>
-        </div>
+        <footer>
+          <button onClick={() => navigate("/")} className="back-button">
+            Regresar a la Página de Inicio
+          </button>
+        </footer>
       </div>
-      <footer>
-        <button onClick={() => navigate("/")} className="back-button">
-          Regresar a la Página de Inicio
-        </button>
-      </footer>
     </div>
   );
 }

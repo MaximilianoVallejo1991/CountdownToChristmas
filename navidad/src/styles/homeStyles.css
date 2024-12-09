@@ -1,71 +1,39 @@
-/* Fondo general de la página */
 body {
     margin: 0;
     padding: 0;
-    background-color: #001f3f;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
     color: white;
     font-family: 'Arial', sans-serif;
     text-align: center;
+    overflow-x: hidden; /* Evita el desplazamiento horizontal */
 }
 
-/* Contenedor de tarjetas */
-.flags-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    justify-content: center;
+
+.home-container {
+
+    min-height: 100vh; /* Para centrar verticalmente */
     padding: 20px;
+    box-sizing: border-box;
 }
 
-/* Estilo para las tarjetas */
-.flag-card {
-    background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 8px;
-    padding: 16px;
-    text-align: center;
-    width: 150px;
-    height: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
 
-.flag-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
-
-/* Imagen de la bandera */
-.flag-img {
-    width: 100%;
-    height: auto;
-    max-height: 100px;
-    object-fit: contain;
-    border-radius: 4px;
-}
-
-/* Texto de la tarjeta */
-.flag-card p {
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    margin: 8px 0 0;
-    text-transform: capitalize;
-}
 
 /* Fondo de nieve */
 .snowfall {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background: radial-gradient(#001f3f, #000);
+    width: 100vw; /* Asegura que cubre todo el ancho de la ventana */
+    height: 100vh; /* Asegura que cubre todo el alto de la ventana */
+    z-index: -1; /* Para que esté detrás del contenido */
+    background: radial-gradient(#001f3f, #000); /* Fondo gradiente */
 }
+
 
 /* Nieve */
 .snow {
@@ -92,3 +60,5 @@ body {
         opacity: 0;
     }
 }
+
+
