@@ -1,39 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+:root {
+    --primary-color: #2ecc71;
+    --font-family: 'Poppins', sans-serif;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
 body {
     margin: 0;
     padding: 0;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    font-family: var(--font-family), sans-serif;
     color: white;
-    font-family: 'Arial', sans-serif;
     text-align: center;
-    overflow-x: hidden; /* Evita el desplazamiento horizontal */
+    overflow-x: hidden;
 }
 
+h1 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+}
 
 .home-container {
-
-    min-height: 100vh; /* Para centrar verticalmente */
+    min-height: 100vh; /* Centrado vertical */
     padding: 20px;
     box-sizing: border-box;
 }
-
-
 
 /* Fondo de nieve */
 .snowfall {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw; /* Asegura que cubre todo el ancho de la ventana */
-    height: 100vh; /* Asegura que cubre todo el alto de la ventana */
-    z-index: -1; /* Para que esté detrás del contenido */
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Detrás del contenido */
     background: radial-gradient(#001f3f, #000); /* Fondo gradiente */
 }
-
 
 /* Nieve */
 .snow {
@@ -49,7 +66,7 @@ body {
     animation-delay: calc(var(--fall-delay) * 2s);
 }
 
-/* Keyframes para el movimiento */
+/* Movimiento de la nieve */
 @keyframes fall {
     0% {
         top: -10px;
@@ -60,5 +77,3 @@ body {
         opacity: 0;
     }
 }
-
-

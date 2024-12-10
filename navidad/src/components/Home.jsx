@@ -9,7 +9,10 @@ function Home() {
 
   useEffect(() => {
     fetchCountries()
-      .then(setCountries)
+      .then((data) => {
+        console.log("Datos obtenidos de la API:", data); // Este log te debería mostrar los datos de la API en la consola
+        setCountries(data);
+      })
       .catch(console.error);
   }, []);
 
