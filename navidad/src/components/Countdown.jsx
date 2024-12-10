@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./../styles/countdownStyles.css";
 import Snowfall from "./Snowfall";
 import { calculateCountdown } from "./../utils/CountdownUtils";
@@ -7,6 +7,13 @@ import { calculateCountdown } from "./../utils/CountdownUtils";
 function Countdown() {
   const [timeRemaining, setTimeRemaining] = useState({});
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Obtener parámetros de la URL
+  const params = new URLSearchParams(location.search);
+  const countryName = params.get("country");
+  const timezone = params.get("timezone");
+  const flag = params.get("flag");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -24,6 +31,11 @@ function Countdown() {
       <Snowfall />
       <div className="container">
         <h1>Cuenta Regresiva para Navidad</h1>
+        <div className="country-info">
+          <h2>{countryName}</h2>
+          {flag && <img src={flag} alt={`Bandera de ${countryName}`} />}
+          <p>Zona Horaria: {timezone}</p>
+        </div>
         <div id="countdown">
           <div className="time-box">
             <span>{timeRemaining.days}</span>
