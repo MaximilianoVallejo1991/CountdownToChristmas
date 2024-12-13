@@ -6,15 +6,31 @@ import Snowfall from "./Snowfall";
 
 function Home() {
   const [countries, setCountries] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredCountries, setFilteredCountries] = useState([]);
 
   useEffect(() => {
     fetchCountries()
       .then((data) => {
-        console.log("Datos obtenidos de la API:", data);
+
         setCountries(data);
+        setFilteredCountries(data); 
       })
       .catch(console.error);
   }, []);
+
+
+  useEffect(() => {
+
+ 
+    const filtered = countries.filter((country) => {
+      const spanishName = country.name.toLowerCase() || ""; // Obtener nombre en español
+      return spanishName.includes(searchQuery.toLowerCase());
+    });
+    setFilteredCountries(filtered);
+  }, [searchQuery, countries]);
+
+
 
   const handleFlagClick = (name, timezones, flag) => {
     window.location.href = `/countdown?country=${name}&timezones=${encodeURIComponent(
@@ -26,9 +42,18 @@ function Home() {
     <div className="home-container">
       <Snowfall />
       <h1>Bienvenidos a la Cuenta Regresiva para Navidad</h1>
-      <p>Haz clic en la bandera para comenzar</p>
+      <p>Elige una bandera para comenzar</p>
+
+        <input
+        type="text"
+        placeholder="O busca un país por su nombre..."
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        className="search-input"
+      />
+
       <div className="flags-container">
-        {countries.map((country) => (
+        {filteredCountries.map((country) => (
           <FlagCard
             key={country.name}
             name={country.name}

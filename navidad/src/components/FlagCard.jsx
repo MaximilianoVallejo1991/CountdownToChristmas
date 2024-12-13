@@ -15,9 +15,9 @@ export function FlagCard({ name, flag, timezones, onClick }) {
 FlagCard.propTypes = {
   name: PropTypes.string.isRequired,
   flag: PropTypes.string.isRequired,
-  timezones: PropTypes.arrayOf(PropTypes.string).isRequired, // Ahora es un arreglo de strings
+  timezones: PropTypes.arrayOf(PropTypes.string).isRequired, 
   onClick: PropTypes.func.isRequired,
 };
 
-// Exportación por defecto
+
 export default FlagCard;

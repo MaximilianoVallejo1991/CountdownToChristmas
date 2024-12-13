@@ -80,9 +80,19 @@ h1 {
 
 @media (max-width: 525px) {
     .flags-container {
-        grid-template-columns: repeat(2, 1fr); /* Asegura 2 columnas */
-        gap: 10px; /* Reduce el espacio entre tarjetas */
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 10px; 
     }
 
 
 }
+
+
+.search-input {
+    width: 50%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }

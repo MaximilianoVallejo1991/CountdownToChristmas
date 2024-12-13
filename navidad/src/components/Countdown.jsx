@@ -47,15 +47,16 @@ function Countdown() {
           <p>Zonas Horarias:</p>
           {timezones.length > 1 ? (
             <select
-              value={selectedTimezone}
-              onChange={(e) => setSelectedTimezone(e.target.value)}
-            >
-              {timezones.map((timezone, index) => (
-                <option key={index} value={timezone}>
-                  {timezone}
-                </option>
-              ))}
-            </select>
+            value={selectedTimezone || ""}
+            onChange={(e) => setSelectedTimezone(e.target.value)}
+          >
+            {timezones.map((timezone, index) => (
+              <option key={index} value={timezone}>
+                {timezone}
+              </option>
+            ))}
+          </select>
+          
           ) : (
             <p>{timezones[0]}</p>
           )}
