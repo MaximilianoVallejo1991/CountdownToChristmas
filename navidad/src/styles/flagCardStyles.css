@@ -44,12 +44,35 @@
   justify-content: center;
   padding: 20px;
 }
-
-/* Ajustes para pantallas menores a 525px */
-@media (max-width: 525px) {
+@media (min-width: 475px) and (max-width: 525px) {
   .flag-card {
       width: 120px;
       height: 180px;
+      margin: 10px;
+      padding: 10px;
+      /* Mantenemos el mismo color de fondo */
+      background-color: rgba(0, 0, 0, 0.6); 
+  }
+
+  .flags-container {
+      gap: 10px; /* Reduce el espacio entre tarjetas */
+  }
+
+  .flag-card img {
+      width: 80px; /* Imágenes más pequeñas */
+  }
+
+  .flag-card p {
+      font-size: 0.9rem; /* Texto más pequeño */
+  }
+}
+
+
+
+@media (max-width: 474px) {
+  .flag-card {
+      width: 100px;
+      height: 160px;
       margin: 10px;
       padding: 10px;
       /* Mantenemos el mismo color de fondo */
