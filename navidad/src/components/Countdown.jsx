@@ -6,23 +6,33 @@ import { calculateCountdown } from "./../utils/CountdownUtils";
 
 function Countdown() {
   const [timeRemaining, setTimeRemaining] = useState({});
+  const [selectedTimezone, setSelectedTimezone] = useState(null); // Zona horaria seleccionada
   const navigate = useNavigate();
   const location = useLocation();
 
   // Obtener parámetros de la URL
   const params = new URLSearchParams(location.search);
   const countryName = params.get("country");
-  const timezone = params.get("timezone");
   const flag = params.get("flag");
+  const timezones = JSON.parse(decodeURIComponent(params.get("timezones"))); // Decodificar y parsear
+
+  useEffect(() => {
+    // Seleccionar por defecto la primera zona horaria
+    if (timezones.length > 0 && !selectedTimezone) {
+      setSelectedTimezone(timezones[0]);
+    }
+  }, [timezones]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const countdown = calculateCountdown();
-      setTimeRemaining(countdown);
+      if (selectedTimezone) {
+        const countdown = calculateCountdown(selectedTimezone);
+        setTimeRemaining(countdown);
+      }
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [selectedTimezone]);
 
   if (!timeRemaining) return <h1>¡Feliz Navidad!</h1>;
 
@@ -34,7 +44,21 @@ function Countdown() {
         <div className="country-info">
           <h2>{countryName}</h2>
           {flag && <img src={flag} alt={`Bandera de ${countryName}`} />}
-          <p>Zona Horaria: {timezone}</p>
+          <p>Zonas Horarias:</p>
+          {timezones.length > 1 ? (
+            <select
+              value={selectedTimezone}
+              onChange={(e) => setSelectedTimezone(e.target.value)}
+            >
+              {timezones.map((timezone, index) => (
+                <option key={index} value={timezone}>
+                  {timezone}
+                </option>
+              ))}
+            </select>
+          ) : (
+            <p>{timezones[0]}</p>
+          )}
         </div>
         <div id="countdown">
           <div className="time-box">

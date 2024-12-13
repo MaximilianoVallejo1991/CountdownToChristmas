@@ -16,8 +16,10 @@ function Home() {
       .catch(console.error);
   }, []);
 
-  const handleFlagClick = (name, timezone, flag) => {
-    window.location.href = `/countdown?country=${name}&timezone=${timezone}&flag=${encodeURIComponent(flag)}`;
+  const handleFlagClick = (name, timezones, flag) => {
+    window.location.href = `/countdown?country=${name}&timezones=${encodeURIComponent(
+      JSON.stringify(timezones)
+    )}&flag=${encodeURIComponent(flag)}`;
   };
 
   return (
@@ -31,13 +33,16 @@ function Home() {
             key={country.name}
             name={country.name}
             flag={country.flag}
-            timezone={country.timezone}
-            onClick={() => handleFlagClick(country.name, country.timezone, country.flag)}
+            timezones={country.timezones}
+            onClick={() =>
+              handleFlagClick(country.name, country.timezones, country.flag)
+            }
           />
         ))}
       </div>
     </div>
   );
 }
+
 
 export default Home;

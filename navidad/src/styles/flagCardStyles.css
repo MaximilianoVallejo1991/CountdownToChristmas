@@ -1,56 +1,19 @@
 .flag-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 150px;
-    height: 200px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin: 10px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  
-  .flag-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .flag-img {
-    width: 100px;
-    height: auto;
-    margin-bottom: 10px;
-    border-radius: 4px;
-  }
-  
-
-  
-/* Contenedor de tarjetas */
-.flags-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: center;
-  padding: 20px;
-}
-
-/* Estilo para las tarjetas */
-.flag-card {
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 8px;
-  padding: 16px;
-  text-align: center;
-  width: 150px;
-  height: 200px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 200px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 10px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.6); /* Color de fondo consistente */
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .flag-card:hover {
@@ -58,7 +21,6 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
-/* Imagen de la bandera */
 .flag-img {
   width: 100%;
   height: auto;
@@ -67,11 +29,42 @@
   border-radius: 4px;
 }
 
-/* Texto de la tarjeta */
 .flag-card p {
   color: white;
   font-size: 1rem;
   font-weight: bold;
   margin: 8px 0 0;
   text-transform: capitalize;
+}
+
+.flags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Ajustes para pantallas menores a 525px */
+@media (max-width: 525px) {
+  .flag-card {
+      width: 120px;
+      height: 180px;
+      margin: 10px;
+      padding: 10px;
+      /* Mantenemos el mismo color de fondo */
+      background-color: rgba(0, 0, 0, 0.6); 
+  }
+
+  .flags-container {
+      gap: 10px; /* Reduce el espacio entre tarjetas */
+  }
+
+  .flag-card img {
+      width: 80px; /* Imágenes más pequeñas */
+  }
+
+  .flag-card p {
+      font-size: 0.9rem; /* Texto más pequeño */
+  }
 }

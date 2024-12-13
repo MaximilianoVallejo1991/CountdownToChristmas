@@ -2,6 +2,9 @@
 
 :root {
     --primary-color: #2ecc71;
+    --secondary-color: #27ae60;
+    --select-bg-color: #f0f8f5; /* Color de fondo para el select */
+    --select-border-color: #1abc9c; /* Color de borde para el select */
     --font-family: 'Poppins', sans-serif;
     --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
@@ -35,7 +38,6 @@ h1 {
     }
 }
 
-
 .countdown-page {
   position: relative;
   font-size: 1.5rem;
@@ -63,6 +65,7 @@ h1 {
   gap: 20px;
   justify-content: center;
   width: 100%;
+  margin-top: 20px; /* Separación con el select */
 }
 
 .countdown-page .time-box {
@@ -102,5 +105,37 @@ h1 {
 }
 
 .countdown-page footer .back-button:hover {
-  background-color: #27ae60; /* Oscurece el color */
+  background-color: var(--secondary-color);
+}
+
+/* Estilos para el <select> */
+.countdown-page select {
+  background-color: var(--select-bg-color); /* Fondo personalizado */
+  color: black;
+  font-family: var(--font-family);
+  font-size: 1rem;
+  padding: 10px;
+  border: 2px solid var(--select-border-color); /* Borde personalizado */
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  outline: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 20px; /* Más separación con los cuadros */
+}
+
+.countdown-page select:hover {
+  border-color: var(--secondary-color);
+}
+
+.countdown-page select:focus {
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 8px rgba(39, 174, 96, 0.8);
+}
+
+/* Estilo para las opciones del <select> */
+.countdown-page select option {
+  padding: 10px;
+  font-size: 1rem;
 }

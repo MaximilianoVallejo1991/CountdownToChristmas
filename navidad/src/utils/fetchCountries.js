@@ -8,7 +8,7 @@ export const fetchCountries = async () => {
   return data
     .map((country) => ({
       name: country.name.common,
-      timezone: country.timezones ? country.timezones[0] : "No disponible",
+      timezones: country.timezones || ["No disponible"], // Guardamos todas las timezones o un arreglo indicando "No disponible"
       flag: country.flags.png,
     }))
     .sort((a, b) => a.name.localeCompare(b.name)); // Ordenamos alfabéticamente por el nombre

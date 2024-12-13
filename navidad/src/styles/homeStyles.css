@@ -77,3 +77,12 @@ h1 {
         opacity: 0;
     }
 }
+
+@media (max-width: 525px) {
+    .flags-container {
+        grid-template-columns: repeat(2, 1fr); /* Asegura 2 columnas */
+        gap: 10px; /* Reduce el espacio entre tarjetas */
+    }
+
+
+}
