@@ -12,7 +12,7 @@ const Santa = () => {
     const animate = (timestamp) => {
       const elapsed = timestamp - lastFrameTime;
 
-      if (elapsed >= 200) { // Cambia el frame cada 100ms (ajusta para velocidad)
+      if (elapsed >= 100) { // Cambia el frame cada 100ms (ajusta para velocidad)
         setFrame((prevFrame) => (prevFrame % totalFrames) + 1);
         lastFrameTime = timestamp;
       }
