@@ -24,7 +24,7 @@ function Home() {
 
  
     const filtered = countries.filter((country) => {
-      const spanishName = country.name.toLowerCase() || ""; // Obtener nombre en español
+      const spanishName = country.name.toLowerCase() || ""; 
       return spanishName.includes(searchQuery.toLowerCase());
     });
     setFilteredCountries(filtered);
@@ -53,7 +53,9 @@ function Home() {
       />
 
       <div className="flags-container">
-        {filteredCountries.map((country) => (
+        
+        { filteredCountries.length !== 0 ?  
+        filteredCountries.map((country) => (
           <FlagCard
             key={country.name}
             name={country.name}
@@ -63,7 +65,7 @@ function Home() {
               handleFlagClick(country.name, country.timezones, country.flag)
             }
           />
-        ))}
+        )): (<h1>"no encontrado"</h1>)}
       </div>
     </div>
   );
