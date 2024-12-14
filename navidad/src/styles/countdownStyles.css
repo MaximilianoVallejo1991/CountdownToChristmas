@@ -26,18 +26,6 @@ h1 {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
-@media (max-width: 768px) {
-    h1 {
-        font-size: 1.8rem;
-    }
-}
-
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.5rem;
-    }
-}
-
 .countdown-page {
   position: relative;
   font-size: 1.5rem;
@@ -65,7 +53,7 @@ h1 {
   gap: 20px;
   justify-content: center;
   width: 100%;
-  margin-top: 20px; /* Separación con el select */
+  margin-top: 20px; 
 }
 
 .countdown-page .time-box {
@@ -108,21 +96,21 @@ h1 {
   background-color: var(--secondary-color);
 }
 
-/* Estilos para el <select> */
+
 .countdown-page select {
-  background-color: var(--select-bg-color); /* Fondo personalizado */
+  background-color: var(--select-bg-color); 
   color: black;
   font-family: var(--font-family);
   font-size: 1rem;
   padding: 10px;
-  border: 2px solid var(--select-border-color); /* Borde personalizado */
+  border: 2px solid var(--select-border-color);
   border-radius: 10px;
   box-shadow: var(--box-shadow);
   outline: none;
   transition: all 0.3s ease;
   cursor: pointer;
   margin-top: 10px;
-  margin-bottom: 20px; /* Más separación con los cuadros */
+  margin-bottom: 20px; 
 }
 
 .countdown-page select:hover {
@@ -134,8 +122,32 @@ h1 {
   box-shadow: 0 0 8px rgba(39, 174, 96, 0.8);
 }
 
-/* Estilo para las opciones del <select> */
+
 .countdown-page select option {
   padding: 10px;
   font-size: 1rem;
+}
+
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .countdown-page .container {
+      padding: 20px;
+      max-width: 400px;
+      width: 80%;
+    }
+
+    .flag {
+      width: 80%
+    }
+
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
 }

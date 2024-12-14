@@ -23,10 +23,32 @@ h1 {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
+.search-input {
+    width: 50%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+
 @media (max-width: 768px) {
     h1 {
         font-size: 1.8rem;
     }
+
+    .search-input {
+        width: 74%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+    
+
+
 }
 
 @media (max-width: 480px) {
@@ -36,23 +58,23 @@ h1 {
 }
 
 .home-container {
-    min-height: 100vh; /* Centrado vertical */
+    min-height: 100vh; 
     padding: 20px;
     box-sizing: border-box;
 }
 
-/* Fondo de nieve */
+
 .snowfall {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: -1; /* Detrás del contenido */
-    background: radial-gradient(#001f3f, #000); /* Fondo gradiente */
+    z-index: -1; 
+    background: radial-gradient(#001f3f, #000); 
 }
 
-/* Nieve */
+
 .snow {
     position: absolute;
     top: -10px;
@@ -66,7 +88,7 @@ h1 {
     animation-delay: calc(var(--fall-delay) * 2s);
 }
 
-/* Movimiento de la nieve */
+
 @keyframes fall {
     0% {
         top: -10px;
@@ -88,11 +110,3 @@ h1 {
 }
 
 
-.search-input {
-    width: 50%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }

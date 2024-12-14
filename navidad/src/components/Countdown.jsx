@@ -6,18 +6,17 @@ import { calculateCountdown } from "./../utils/CountdownUtils";
 
 function Countdown() {
   const [timeRemaining, setTimeRemaining] = useState({});
-  const [selectedTimezone, setSelectedTimezone] = useState(null); // Zona horaria seleccionada
+  const [selectedTimezone, setSelectedTimezone] = useState(null); 
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Obtener parámetros de la URL
+  
   const params = new URLSearchParams(location.search);
   const countryName = params.get("country");
   const flag = params.get("flag");
-  const timezones = JSON.parse(decodeURIComponent(params.get("timezones"))); // Decodificar y parsear
-
+  const timezones = JSON.parse(decodeURIComponent(params.get("timezones"))); 
   useEffect(() => {
-    // Seleccionar por defecto la primera zona horaria
+    
     if (timezones.length > 0 && !selectedTimezone) {
       setSelectedTimezone(timezones[0]);
     }
@@ -40,10 +39,10 @@ function Countdown() {
     <div className="countdown-page">
       <Snowfall />
       <div className="container">
-        <h1>Cuenta Regresiva para Navidad</h1>
+        <h1>Cuenta Regresiva para Navidad en:</h1>
         <div className="country-info">
           <h2>{countryName}</h2>
-          {flag && <img src={flag} alt={`Bandera de ${countryName}`} />}
+          {flag && <img className = "flag" src={flag} alt={`Bandera de ${countryName}`} />}
           <p>Zonas Horarias:</p>
           {timezones.length > 1 ? (
             <select
