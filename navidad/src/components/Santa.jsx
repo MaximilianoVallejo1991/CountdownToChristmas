@@ -6,16 +6,27 @@ const Santa = () => {
 
   useEffect(() => {
     const totalFrames = 11; // Total de imágenes
-    const interval = setInterval(() => {
-      setFrame((prevFrame) => (prevFrame % totalFrames) + 1); // Cambia al siguiente fotograma
-    }, 100); // Velocidad de cambio de fotograma (ajústalo según la animación)
+    let animationFrameId;
+    let lastFrameTime = performance.now(); // Momento inicial
 
-    return () => clearInterval(interval); // Limpia el intervalo al desmontar el componente
+    const animate = (timestamp) => {
+      const elapsed = timestamp - lastFrameTime;
+
+      if (elapsed >= 100) { // Cambia el frame cada 100ms (ajusta para velocidad)
+        setFrame((prevFrame) => (prevFrame % totalFrames) + 1);
+        lastFrameTime = timestamp;
+      }
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animationFrameId = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationFrameId); // Limpia la animación al desmontar el componente
   }, []);
 
   return (
     <div className="santa-container">
-
       <img
         src={`/assets/santa/Run(${frame}).png`}
         alt="Dancing Santa"
@@ -23,7 +34,6 @@ const Santa = () => {
       />
     </div>
   );
-  
 };
 
 export default Santa;
