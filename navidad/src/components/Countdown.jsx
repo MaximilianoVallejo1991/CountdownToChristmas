@@ -27,13 +27,20 @@ function Countdown() {
       if (selectedTimezone) {
         const countdown = calculateCountdown(selectedTimezone);
         setTimeRemaining(countdown);
+
+                // Redirige si el tiempo restante es nulo o negativo
+                if (!countdown) {
+                  navigate("/MerryChristmas");
+                }
+              
+
       }
     }, 1000);
 
     return () => clearInterval(interval);
   }, [selectedTimezone]);
 
-  if (!timeRemaining) return <h1>¡Feliz Navidad!</h1>;
+
 
   return (
     <div className="countdown-page">

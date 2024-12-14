@@ -4,7 +4,7 @@
  * @returns {Object|null} - Un objeto con días, horas, minutos y segundos, o null si ya pasó la fecha objetivo.
  */
 export function calculateCountdown(timezone) {
-  const targetDateUTC = new Date("2024-12-25T00:00:00Z");
+  const targetDateUTC = new Date("2024-11-25T00:00:00Z");
   const now = new Date();
 
   // Calcular el offset de la zona horaria proporcionada
@@ -15,7 +15,7 @@ export function calculateCountdown(timezone) {
 
   const diff = targetDate - now;
 
-  if (diff > 0) {
+  if (diff > 0) { 
     return {
       days: Math.floor(diff / (1000 * 60 * 60 * 24)),
       hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
