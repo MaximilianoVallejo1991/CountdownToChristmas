@@ -8,7 +8,7 @@
   
   /* Imagen de Papá Noel */
   .santa-pixel-art {
-    width: 100px; /* Tamaño de la imagen */
+    width: 80px; /* Tamaño de la imagen */
     height: auto;
     animation: bounce 1s infinite; /* Animación de rebote opcional */
   }
