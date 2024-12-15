@@ -38,7 +38,7 @@ const Fireworks = () => {
         this.x = x;
         this.y = y;
         this.color = color;
-        this.radius = Math.random() * 2 + 1;
+        this.radius = Math.random() * 1 + .5;
         this.speedX = Math.random() * 6 - 3;
         this.speedY = Math.random() * 6 - 3;
         this.alpha = 1.5;

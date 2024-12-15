@@ -1,10 +1,13 @@
-/**
+/** 
  * Calcula el tiempo restante hasta la fecha objetivo.
  * @param {string} timezone - Zona horaria en formato "UTC±HH:mm".
  * @returns {Object|null} - Un objeto con días, horas, minutos y segundos, o null si ya pasó la fecha objetivo.
  */
+
+
 export function calculateCountdown(timezone) {
-  const targetDateUTC = new Date("2024-11-25T00:00:00Z");
+  const currentYear = new Date().getFullYear();
+  const targetDateUTC = new Date( `${currentYear}-11-25T00:00:00Z`   );
   const now = new Date();
 
   // Calcular el offset de la zona horaria proporcionada

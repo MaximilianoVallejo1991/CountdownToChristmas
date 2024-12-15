@@ -4,8 +4,7 @@ import "../styles/santa.css";
 const Santa = () => {
   const [frame, setFrame] = useState(1); 
   const [xPosition, setXPosition] = useState(0); 
-  const [screenWidth] = useState(window.innerWidth);  // No es necesario actualizar aquí en cada renderizado
-
+  const [screenWidth] = useState(window.innerWidth);  
   useEffect(() => {
     const totalFrames = 11; 
     const animationSpeed = 100; 
@@ -14,25 +13,25 @@ const Santa = () => {
     const interval = setInterval(() => {
       setFrame((prevFrame) => (prevFrame % totalFrames) + 1);
 
-      // Aseguramos que el Santa no se salga de la pantalla
+      
       setXPosition((prevPosition) => {
-        // Si Santa ha salido de la pantalla, lo reiniciamos a la izquierda
-        if (prevPosition > screenWidth) {
-          return -150; // Restablece a la izquierda de la pantalla
+        
+        if (prevPosition > screenWidth+160) {
+          return -80; 
         }
-        // De lo contrario, movemos a la derecha
+        
         return prevPosition + movementSpeed;
       });
     }, animationSpeed);
 
-    return () => clearInterval(interval); // Limpia el intervalo al desmontar el componente
+    return () => clearInterval(interval); 
   }, [screenWidth]);
 
   return (
     <div
       className="santa-container"
       style={{
-        left: `${xPosition}px`, // Establece la posición horizontal de Santa
+        left: `${xPosition}px`, 
       }}
     >
       <img

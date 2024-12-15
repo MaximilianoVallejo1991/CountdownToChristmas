@@ -1,4 +1,3 @@
-
 .santa-container {
   position: fixed;
   bottom: 20px; 
@@ -11,6 +10,7 @@
   width: 80px; 
   height: auto;
   animation: bounce 1s infinite; 
+  transition: left 0.1s linear;
 }  
 
 
