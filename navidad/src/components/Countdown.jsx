@@ -6,13 +6,17 @@ import { calculateCountdown } from "./../utils/CountdownUtils";
 
 function Countdown() {
   const [timeRemaining, setTimeRemaining] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });  // Inicializamos con valores por defecto
-
+  
   const [selectedTimezone, setSelectedTimezone] = useState(null); 
   const navigate = useNavigate();
   const location = useLocation();
 
   
   const params = new URLSearchParams(location.search);
+  const selectedEvent = params.get("event"); // Obtén el evento desde la URL
+  const targetDateParam = params.get("date");
+  const targetDate = targetDateParam ? new Date(targetDateParam) : null;
+
   const countryName = params.get("country");
   const flag = params.get("flag");
   const timezones = JSON.parse(decodeURIComponent(params.get("timezones"))); 
@@ -25,21 +29,19 @@ function Countdown() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (selectedTimezone) {
-        const countdown = calculateCountdown(selectedTimezone);
-        setTimeRemaining(countdown);
-
-               
-                if (!countdown) {
-                  navigate("/MerryChristmas");
-                }
-              
-
+      if (selectedTimezone && targetDate) {
+        const countdown = calculateCountdown(targetDate, selectedTimezone);
+        if (countdown) {
+          setTimeRemaining(countdown);
+        } else {
+          navigate(`/MerryChristmas?event=${encodeURIComponent(selectedEvent)}`);
+        }
       }
     }, 1000);
-
+  
     return () => clearInterval(interval);
-  }, [selectedTimezone]);
+  }, [selectedTimezone, targetDate, navigate]);
+  
 
 
 

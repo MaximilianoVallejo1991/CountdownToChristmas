@@ -10,6 +10,8 @@ function Home() {
   const [filteredCountries, setFilteredCountries] = useState([]);
   const [showOptions, setShowOptions] = useState(true); // Estado para controlar la visualización de los botones
   const [selectedDate, setSelectedDate] = useState(""); // Estado para la fecha seleccionada
+  const [selectedEvent, setSelectedEvent] = useState(""); // Evento seleccionado (Navidad o Año Nuevo)
+
 
   useEffect(() => {
     fetchCountries()
@@ -29,29 +31,46 @@ function Home() {
   }, [searchQuery, countries]);
 
   const handleFlagClick = (name, timezones, flag) => {
+    const formattedDate = new Date(selectedDate).toISOString();
     window.location.href = `/countdown?country=${name}&timezones=${encodeURIComponent(
       JSON.stringify(timezones)
-    )}&flag=${encodeURIComponent(flag)}`;
+    )}&flag=${encodeURIComponent(flag)}&date=${encodeURIComponent(formattedDate)}&event=${encodeURIComponent(selectedEvent)}`;
   };
+  
 
+
+  // 
   const handleOptionClick = (option) => {
-    console.log(`Opción seleccionada: ${option}`);
-    setShowOptions(false); // Oculta las opciones y muestra las banderas
-  };
-
-  const handleDateSubmit = () => {
-    if (!selectedDate) {
-      alert("Por favor selecciona una fecha antes de continuar.");
-      return;
+    const currentYear = new Date().getFullYear();
+    let targetDateX;
+  
+    if (option === "Navidad") {
+      targetDateX = new Date(`${currentYear}-11-25T00:00:00Z`);
+    } else if (option === "Año Nuevo") {
+      targetDateX = new Date(`${currentYear }-01-01T00:00:00Z`);
     }
-    console.log(`Fecha seleccionada: ${selectedDate}`);
-    setShowOptions(false); // Oculta las opciones y muestra las banderas
+  
+    console.log(`Opción seleccionada: ${option}`);
+    console.log(`Fecha objetivo: ${targetDateX}`);
+    setSelectedDate(targetDateX);  // Guarda la fecha seleccionada en el estado
+    setSelectedEvent(option);     // Guarda el evento seleccionado
+    setShowOptions(false);        // Oculta las opciones y muestra las banderas
   };
+  
+  
+  // const handleDateSubmit = () => {
+  //   if (!selectedDate) {
+  //     alert("Por favor selecciona una fecha antes de continuar.");
+  //     return;
+  //   }
+  //   console.log(`Fecha seleccionada: ${selectedDate}`);
+  //   setShowOptions(false); // Oculta las opciones y muestra las banderas
+  // };
 
   return (
     <div className="home-container">
       <Snowfall />
-      <h1>Bienvenidos a la Cuenta Regresiva para Navidad</h1>
+      <h1>Bienvenido a la Pagina de Cuentas Regresivas</h1>
 
       {showOptions ? (
         
@@ -67,7 +86,7 @@ function Home() {
             </button>
           </div>
 
-          <div className="date-input-container">
+          {/* <div className="date-input-container">
             <input
               type="date"
               value={selectedDate}
@@ -77,11 +96,11 @@ function Home() {
             <button onClick={handleDateSubmit} className="submit-date-button">
               Usar Fecha
             </button>
-          </div>
+          </div> */}
         </div>
       ) : (
         <>
-          <p>Elige una bandera para comenzar</p>
+          <p>Elige un País para continuar</p>
 
           <input
             type="text"

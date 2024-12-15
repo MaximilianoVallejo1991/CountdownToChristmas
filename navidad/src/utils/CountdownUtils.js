@@ -1,22 +1,19 @@
 /** 
  * Calcula el tiempo restante hasta la fecha objetivo.
+ * @param {Date} targetDateX - La fecha objetivo para la cuenta regresiva.
  * @param {string} timezone - Zona horaria en formato "UTC±HH:mm".
  * @returns {Object|null} - Un objeto con días, horas, minutos y segundos, o null si ya pasó la fecha objetivo.
  */
-
-
-export function calculateCountdown(timezone) {
-  const currentYear = new Date().getFullYear();
-  const targetDateUTC = new Date( `${currentYear}-11-25T00:00:00Z`   );
+export function calculateCountdown(targetDateX, timezone) {
   const now = new Date();
 
   // Calcular el offset de la zona horaria proporcionada
   const offsetMinutes = parseTimezoneOffset(timezone);
-  const targetDate = new Date(
-    targetDateUTC.getTime() - offsetMinutes * 60 * 1000
+  const targetDateWithOffset = new Date(
+    targetDateX.getTime() - offsetMinutes * 60 * 1000
   );
 
-  const diff = targetDate - now;
+  const diff = targetDateWithOffset - now;
 
   if (diff > 0) { 
     return {
