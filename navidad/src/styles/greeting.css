@@ -1,5 +1,8 @@
 
-
+body {
+    position: relative;
+    overflow: hidden; /* Desactiva el desplazamiento horizontal en toda la página */
+  }
 
 .fireworks-container {
     background: radial-gradient(#001f3f, #000);

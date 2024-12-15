@@ -3,9 +3,13 @@ import React, { useEffect } from 'react';
 const Fireworks = () => {
   useEffect(() => {
     const canvas = document.createElement('canvas');
-    canvas.classList.add('fireworks-canvas'); // Añadimos una clase al canvas
+    canvas.classList.add('fireworks-canvas');
     const ctx = canvas.getContext('2d');
-    document.querySelector('.fireworks-container').appendChild(canvas); // Agregarlo al contenedor adecuado
+    // Agregar el canvas al contenedor cuando el componente esté montado
+    const fireworksContainer = document.querySelector('.fireworks-container');
+    if (fireworksContainer) {
+      fireworksContainer.appendChild(canvas);
+    }
 
     const fireworks = [];
 
@@ -38,22 +42,21 @@ const Fireworks = () => {
         this.speedX = Math.random() * 6 - 3;
         this.speedY = Math.random() * 6 - 3;
         this.alpha = 1.5;
-        this.gravityDelay = Math.random() * 100 + 1; // Tiempo antes de que la gravedad afecte
-        this.timeAlive = 0; // Para llevar el conteo de la vida útil de la partícula
+        this.gravityDelay = Math.random() * 100 + 1;
+        this.timeAlive = 0;
       }
 
       update() {
         this.x += this.speedX;
         this.y += this.speedY;
 
-        this.timeAlive++; // Aumenta el contador de vida de la partícula
+        this.timeAlive++;
 
-        // Si ha pasado el tiempo de espera, se aplica la gravedad (desplazar hacia abajo)
         if (this.timeAlive > this.gravityDelay) {
-          this.speedY += 0.02; // Aumenta la velocidad en Y (gravedad simulada)
+          this.speedY += 0.02;
         }
 
-        this.alpha -= 0.01; // La opacidad disminuye con el tiempo
+        this.alpha -= 0.01;
       }
 
       draw() {
@@ -95,13 +98,18 @@ const Fireworks = () => {
       canvas.height = window.innerHeight;
     });
 
+    // Cleanup cuando el componente se desmonte
     return () => {
       clearInterval(interval);
-      document.querySelector('.fireworks-container').removeChild(canvas);
+      // Solo intentamos eliminar el canvas si el contenedor está presente
+      const container = document.querySelector('.fireworks-container');
+      if (container) {
+        container.removeChild(canvas);
+      }
     };
-  }, []);
+  }, []); // El efecto se ejecuta solo una vez cuando se monta el componente
 
-  return <div className="fireworks-container"></div>;  // Añadimos un contenedor para los fuegos artificiales
+  return <div className="fireworks-container"></div>;
 };
 
 export default Fireworks;

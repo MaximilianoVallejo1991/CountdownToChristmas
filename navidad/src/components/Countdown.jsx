@@ -5,7 +5,8 @@ import Snowfall from "./Snowfall";
 import { calculateCountdown } from "./../utils/CountdownUtils";
 
 function Countdown() {
-  const [timeRemaining, setTimeRemaining] = useState({});
+  const [timeRemaining, setTimeRemaining] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });  // Inicializamos con valores por defecto
+
   const [selectedTimezone, setSelectedTimezone] = useState(null); 
   const navigate = useNavigate();
   const location = useLocation();
@@ -28,7 +29,7 @@ function Countdown() {
         const countdown = calculateCountdown(selectedTimezone);
         setTimeRemaining(countdown);
 
-                // Redirige si el tiempo restante es nulo o negativo
+               
                 if (!countdown) {
                   navigate("/MerryChristmas");
                 }
@@ -96,3 +97,7 @@ function Countdown() {
 }
 
 export default Countdown;
+
+
+
+

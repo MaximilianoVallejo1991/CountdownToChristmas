@@ -7,6 +7,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 
 const Greeting = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
  
   }, []);
