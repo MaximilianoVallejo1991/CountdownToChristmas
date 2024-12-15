@@ -1,25 +1,25 @@
-/* Contenedor del Papá Noel */
 .santa-container {
-    position: absolute;
-    bottom: 20px; /* Posición en la parte inferior */
-    left: 20px;  /* Posición en la esquina derecha */
-    z-index: 10;  /* Encima de otros elementos */
+  position: absolute;
+  bottom: 20px; 
+  z-index: 10; 
+  overflow-x: hidden;
+
+}
+
+.santa-pixel-art {
+  width: 80px; 
+  height: auto;
+
+}
+
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
   }
-  
-  /* Imagen de Papá Noel */
-  .santa-pixel-art {
-    width: 80px; /* Tamaño de la imagen */
-    height: auto;
-    animation: bounce 1s infinite; /* Animación de rebote opcional */
+  50% {
+    transform: translateY(-10px);
   }
-  
-  /* Animación de rebote opcional */
-  @keyframes bounce {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-  
+}
+
+

@@ -2,33 +2,34 @@ import React, { useEffect, useState } from "react";
 import "../styles/santa.css";
 
 const Santa = () => {
-  const [frame, setFrame] = useState(1); // Fotograma actual
-  const [xPosition, setXPosition] = useState(0); // Posición horizontal de Santa
-  const screenWidth = window.innerWidth; // Ancho de la ventana
+  const [frame, setFrame] = useState(1); 
+  const [xPosition, setXPosition] = useState(0); 
+  const [screenWidth] = useState(window.innerWidth); 
+
 
   useEffect(() => {
-    const totalFrames = 11; // Total de imágenes
-    const animationSpeed = 100; // Velocidad de cambio de fotograma
-    const movementSpeed = 10; // Velocidad de desplazamiento horizontal
+    const totalFrames = 11; 
+    const animationSpeed = 100; 
+    const movementSpeed = 10; 
 
     const interval = setInterval(() => {
-      // Actualizar fotograma
+      
       setFrame((prevFrame) => (prevFrame % totalFrames) + 1);
 
-      // Actualizar posición horizontal
-      setXPosition((prevPosition) =>
-        prevPosition > screenWidth ? -80 : prevPosition + movementSpeed
-      );
+      
+      setXPosition((prevPosition) =>         
+
+        prevPosition > screenWidth-10 ? -150 : prevPosition + movementSpeed);
+
     }, animationSpeed);
 
     return () => clearInterval(interval);
   }, [screenWidth]);
-
   return (
     <div
       className="santa-container"
       style={{
-        left: `${xPosition}px`, // Actualizamos la posición horizontal con `left`
+        left: `${xPosition}px`, 
       }}
     >
       <img

@@ -3,8 +3,8 @@
 :root {
     --primary-color: #2ecc71;
     --secondary-color: #27ae60;
-    --select-bg-color: #f0f8f5; /* Color de fondo para el select */
-    --select-border-color: #1abc9c; /* Color de borde para el select */
+    --select-bg-color: #f0f8f5; 
+    --select-border-color: #1abc9c; 
     --font-family: 'Poppins', sans-serif;
     --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
