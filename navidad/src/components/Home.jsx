@@ -11,6 +11,8 @@ function Home() {
   const [showOptions, setShowOptions] = useState(true); // Estado para controlar la visualización de los botones
   const [selectedDate, setSelectedDate] = useState(""); // Estado para la fecha seleccionada
   const [selectedEvent, setSelectedEvent] = useState(""); // Evento seleccionado (Navidad o Año Nuevo)
+  const [nextYearTargetDateX, setNextYearTargetDateX] = useState(null);
+  
 
 
   useEffect(() => {
@@ -32,10 +34,10 @@ function Home() {
 
   const handleFlagClick = (name, timezones, flag) => {
     const formattedDate = new Date(selectedDate).toISOString();
-    window.location.href = `/countdown?country=${name}&timezones=${encodeURIComponent(
-      JSON.stringify(timezones)
-    )}&flag=${encodeURIComponent(flag)}&date=${encodeURIComponent(formattedDate)}&event=${encodeURIComponent(selectedEvent)}`;
-  };
+    window.location.href = `/countdown?country=${encodeURIComponent(
+      name
+    )}&timezones=${encodeURIComponent(JSON.stringify(timezones))}&flag=${encodeURIComponent(flag)}&date=${encodeURIComponent(formattedDate)}&event=${encodeURIComponent(selectedEvent)}&nextYearDate=${encodeURIComponent(nextYearTargetDateX.toISOString())}`;
+ };
   
 
 
@@ -43,17 +45,22 @@ function Home() {
   const handleOptionClick = (option) => {
     const currentYear = new Date().getFullYear();
     let targetDateX;
+    let nextYearTargetDateX;
   
     if (option === "Navidad") {
-      targetDateX = new Date(`${currentYear}-11-25T00:00:00Z`);
+      targetDateX = new Date(`${currentYear}-12-15T00:00:00Z`);
+      nextYearTargetDateX = new Date(`${currentYear + 1}-12-15T00:00:00Z`);
     } else if (option === "Año Nuevo") {
-      targetDateX = new Date(`${currentYear }-01-01T00:00:00Z`);
+      targetDateX = new Date(`${currentYear + 0}-12-15T00:00:00Z`);
+      nextYearTargetDateX = new Date(`${currentYear + 1}-12-15T00:00:00Z`);
     }
   
     console.log(`Opción seleccionada: ${option}`);
     console.log(`Fecha objetivo: ${targetDateX}`);
+    console.log(`Fecha objetivo del próximo año: ${nextYearTargetDateX}`);;
     setSelectedDate(targetDateX);  // Guarda la fecha seleccionada en el estado
     setSelectedEvent(option);     // Guarda el evento seleccionado
+    setNextYearTargetDateX(nextYearTargetDateX); // Guarda la fecha del próximo año
     setShowOptions(false);        // Oculta las opciones y muestra las banderas
   };
   
@@ -77,7 +84,7 @@ function Home() {
         <div className="options-container">
 
           <div className="options-buttons">
-          <p>Selecciona una opción o ingresa una fecha para continuar:</p>
+          <p>Selecciona una opción para continuar:</p>
             <button onClick={() => handleOptionClick("Navidad")} className="option-button">
               Navidad
             </button>
