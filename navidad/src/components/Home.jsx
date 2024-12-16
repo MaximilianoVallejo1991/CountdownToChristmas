@@ -48,11 +48,11 @@ function Home() {
     let nextYearTargetDateX;
   
     if (option === "Navidad") {
-      targetDateX = new Date(`${currentYear}-12-16T00:00:00Z`);
-      nextYearTargetDateX = new Date(`${currentYear + 1}-12-16T00:00:00Z`);
+      targetDateX = new Date(`${currentYear}-12-25T00:00:00Z`);
+      nextYearTargetDateX = new Date(`${currentYear + 1}-12-25T00:00:00Z`);
     } else if (option === "Año Nuevo") {
-      targetDateX = new Date(`${currentYear + 0}-12-15T00:00:00Z`);
-      nextYearTargetDateX = new Date(`${currentYear + 1}-12-15T00:00:00Z`);
+      targetDateX = new Date(`${currentYear + 1}-01-01T00:00:00Z`);
+      nextYearTargetDateX = new Date(`${currentYear + 2}-01-01T00:00:00Z`);
     }
   
     console.log(`Opción seleccionada: ${option}`);
