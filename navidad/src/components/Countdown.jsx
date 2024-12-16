@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./../styles/countdownStyles.css";
 import Snowfall from "./Snowfall";
@@ -6,8 +6,9 @@ import { calculateCountdown } from "./../utils/CountdownUtils";
 
 function Countdown() {
   const [timeRemaining, setTimeRemaining] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-  const [isGreeting, setIsGreeting] = useState(false); // Nueva variable para el saludo
-  const [selectedTimezone, setSelectedTimezone] = useState(null); 
+  const [isGreeting, setIsGreeting] = useState(false);
+  const [selectedTimezone, setSelectedTimezone] = useState(""); // Inicializar vacío
+  const [timezones, setTimezones] = useState([]); // Arreglo de zonas horarias
   const navigate = useNavigate();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
@@ -18,32 +19,37 @@ function Countdown() {
   const nextYearDate = nextYearDateParam ? new Date(nextYearDateParam) : null;
   const countryName = params.get("country");
   const flag = params.get("flag");
-  const timezones = JSON.parse(decodeURIComponent(params.get("timezones")));
 
+  // Decodificar y configurar timezones desde los parámetros
   useEffect(() => {
-    if (timezones.length > 0 && !selectedTimezone) {
-      setSelectedTimezone(timezones[0]);
+    const timezonesParam = params.get("timezones");
+    if (timezonesParam) {
+      try {
+        const decodedTimezones = JSON.parse(decodeURIComponent(timezonesParam));
+        setTimezones(decodedTimezones);
+      } catch (error) {
+        console.error("Error al decodificar las zonas horarias:", error);
+        setTimezones([]);
+      }
     }
-  }, [timezones]);
+  }, [location.search]);
 
+  // Calcular el conteo regresivo solo cuando se selecciona una zona horaria
   useEffect(() => {
+    if (!selectedTimezone) return;
+
     const interval = setInterval(() => {
       const now = new Date();
-
-      // Calcular la diferencia con la fecha objetivo
       const countdown = calculateCountdown(now > targetDate ? nextYearDate : targetDate, selectedTimezone);
-      
+
       if (countdown) {
         setTimeRemaining(countdown);
-        
-        // Obtener la diferencia entre la fecha objetivo y la fecha actual
-        const diff = countdown.days ;
-        
-        // Verificar si estamos en las 24 horas de saludo (0 > diff > -24 horas)
-        if ( 365  > diff && diff >= 364  ) {
-          setIsGreeting(true); // Activar el saludo
+
+        const diff = countdown.days;
+        if (365 > diff && diff >= 364) {
+          setIsGreeting(true);
         } else {
-          setIsGreeting(false); // Dejar de mostrar el saludo
+          setIsGreeting(false);
         }
       }
     }, 1000);
@@ -51,9 +57,10 @@ function Countdown() {
     return () => clearInterval(interval);
   }, [selectedTimezone, targetDate, nextYearDate]);
 
+  // Redirección si es tiempo de saludo
   if (isGreeting) {
-    navigate(`/MerryChristmas?event=${encodeURIComponent(selectedEvent)}`); // Redirigir al saludo
-    return null; // Evitar que la cuenta regresiva se muestre
+    navigate(`/MerryChristmas?event=${encodeURIComponent(selectedEvent)}`);
+    return null;
   }
 
   return (
@@ -65,20 +72,17 @@ function Countdown() {
           <h2>{countryName}</h2>
           {flag && <img className="flag" src={flag} alt={`Bandera de ${countryName}`} />}
           <p>Zonas Horarias:</p>
-          {timezones.length > 1 ? (
-            <select
-              value={selectedTimezone || ""}
-              onChange={(e) => setSelectedTimezone(e.target.value)}
-            >
-              {timezones.map((timezone, index) => (
-                <option key={index} value={timezone}>
-                  {timezone}
-                </option>
-              ))}
-            </select>
-          ) : (
-            <p>{timezones[0]}</p>
-          )}
+          <select
+            value={selectedTimezone}
+            onChange={(e) => setSelectedTimezone(e.target.value)}
+          >
+            <option value="">Seleccionar</option>
+            {timezones.map((timezone, index) => (
+              <option key={index} value={timezone}>
+                {timezone}
+              </option>
+            ))}
+          </select>
         </div>
         <div id="countdown">
           <div className="time-box">
