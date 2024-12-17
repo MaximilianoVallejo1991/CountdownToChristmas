@@ -71,12 +71,12 @@ function Countdown() {
         <div className="country-info">
           <h2>{countryName}</h2>
           {flag && <img className="flag" src={flag} alt={`Bandera de ${countryName}`} />}
-          <p>Zonas Horarias:</p>
+          <p>Elige tu Franja Horaria:</p>
           <select
             value={selectedTimezone}
             onChange={(e) => setSelectedTimezone(e.target.value)}
           >
-            <option value="">Seleccionar</option>
+            <option value="">Seleccione</option>
             {timezones.map((timezone, index) => (
               <option key={index} value={timezone}>
                 {timezone}

@@ -12,7 +12,7 @@
 body {
     margin: 0;
     padding: 0;
-
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -34,6 +34,12 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  min-height: 100dvh; /* Mejor ajuste para dispositivos móviles */
+
+  box-sizing: border-box; /* Asegura que padding no afecte el tamaño */
+
+
 }
 
 .countdown-page .container {
@@ -42,9 +48,13 @@ h1 {
   width: 100%;
 }
 
-.countdown-page h1 {
-  font-size: clamp(2rem, 5vw, 2.5rem);
-  margin-bottom: 32px;
+@media (min-width:480px) {
+  .countdown-page h1 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+  .countdown-page .time-box{
+    padding: 20px 15px;
+  }
 }
 
 .countdown-page #countdown {
@@ -67,6 +77,8 @@ h1 {
   box-shadow: var(--box-shadow);
   text-align: center;
 }
+
+
 
 .countdown-page .time-box span {
   font-size: 2rem;
@@ -109,7 +121,7 @@ h1 {
   outline: none;
   transition: all 0.3s ease;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 0px;
   margin-bottom: 20px; 
 }
 
@@ -129,9 +141,9 @@ h1 {
 }
 
 
-@media (max-width: 768px) {
+@media (min-width:330px) and (max-width: 768px) {
     h1 {
-        font-size: 1.5rem;
+        font-size: 1rem;
     }
 
     .countdown-page .container {
@@ -140,14 +152,33 @@ h1 {
       width: 80%;
     }
 
+    .countdown-page .time-box {
+      padding: 8px 4px;
+    }
+
     .flag {
       width: 80%
     }
 
 }
 
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.5rem;
-    }
+
+@media (min-width: 780px) {
+  .countdown-page #countdown {
+    gap: 10px; /* Menor separación entre cajas */
+    margin-top: 0; /* Elimina margen adicional */
+  }
+
+  .countdown-page .time-box {
+    padding: 10px 5px; /* Menor padding */
+  }
+
+  h1 {
+    font-size: 2rem; /* Tamaño adecuado del título */
+    margin: 0; /* Elimina márgenes innecesarios */
+  }
+  
+  .countdown-page .container {
+    padding: 10px; /* Menor padding general */
+  }
 }
