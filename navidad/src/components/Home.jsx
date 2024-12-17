@@ -16,12 +16,25 @@ function Home() {
 
 
   useEffect(() => {
-    fetchCountries()
-      .then((data) => {
-        setCountries(data);
-        setFilteredCountries(data);
-      })
-      .catch(console.error);
+    const fetchData = async () => {
+      let retries = 3; // Número de reintentos
+      while (retries > 0) {
+        try {
+          const data = await fetchCountries();
+          setCountries(data);
+          setFilteredCountries(data);
+          break; // Sale del loop si tiene éxito
+        } catch (error) {
+          console.error("Error al obtener los países:", error);
+          retries -= 1;
+          if (retries === 0) {
+            alert("No se pudo cargar la lista de países. Verifique su conexión.");
+          }
+        }
+      }
+    };
+  
+    fetchData();
   }, []);
 
   useEffect(() => {
