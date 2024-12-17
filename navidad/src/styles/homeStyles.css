@@ -18,6 +18,7 @@ body {
     color: white;
     text-align: center;
     overflow-x: hidden;
+
 }
 
 h1 {
@@ -105,14 +106,13 @@ h1 {
 .options-container {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centrado vertical */
-
-    min-height: 50vh;       /* Ocupa la mitad de la pantalla */
+    justify-content: center; 
+    min-height: 50vh;     
 }
 
 .option-button,
 .div date-input-container {
-    width: 50%;            /* Igual ancho para todas las opciones */
+    width: 50%;            
 }
 
 .option-button {
@@ -166,8 +166,19 @@ h1 {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 15px;
     justify-content: center;
+    align-items: start; 
     margin-top: 20px;
+
 }
+
+.flag-card {
+    box-sizing: border-box;
+    width: 100%; 
+    max-width: 150px; 
+    margin: 0 auto; 
+    padding: 8px;
+}
+
 
 @media (max-width: 525px) {
     .flags-container {
@@ -178,7 +189,5 @@ h1 {
 
 
 
-
-/* sddsa */
 
 
