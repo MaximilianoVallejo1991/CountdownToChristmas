@@ -7,20 +7,20 @@ import { calculateCountdown } from "./../utils/CountdownUtils";
 function Countdown() {
   const [timeRemaining, setTimeRemaining] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [isGreeting, setIsGreeting] = useState(false);
-  const [selectedTimezone, setSelectedTimezone] = useState(""); // Inicializar vacío
-  const [timezones, setTimezones] = useState([]); // Arreglo de zonas horarias
+  const [selectedTimezone, setSelectedTimezone] = useState(""); 
+  const [timezones, setTimezones] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const selectedEvent = params.get("event");
   const targetDateParam = params.get("date");
   const nextYearDateParam = params.get("nextYearDate");
-  const targetDate = targetDateParam ? new Date(targetDateParam) : null;
+  let targetDate = targetDateParam ? new Date(targetDateParam) : null;
   const nextYearDate = nextYearDateParam ? new Date(nextYearDateParam) : null;
   const countryName = params.get("country");
   const flag = params.get("flag");
 
-  // Decodificar y configurar timezones desde los parámetros
+
   useEffect(() => {
     const timezonesParam = params.get("timezones");
     if (timezonesParam) {
@@ -34,13 +34,18 @@ function Countdown() {
     }
   }, [location.search]);
 
-  // Calcular el conteo regresivo solo cuando se selecciona una zona horaria
+
   useEffect(() => {
     if (!selectedTimezone) return;
 
     const interval = setInterval(() => {
-      const now = new Date();
-      const countdown = calculateCountdown(now > targetDate ? nextYearDate : targetDate, selectedTimezone);
+      
+      let countdown = calculateCountdown(targetDate, selectedTimezone);
+
+      if (countdown === null) {
+        targetDate = nextYearDate;
+        countdown = calculateCountdown(targetDate, selectedTimezone);
+      }
 
       if (countdown) {
         setTimeRemaining(countdown);
@@ -57,7 +62,7 @@ function Countdown() {
     return () => clearInterval(interval);
   }, [selectedTimezone, targetDate, nextYearDate]);
 
-  // Redirección si es tiempo de saludo
+
   if (isGreeting) {
     navigate(`/MerryChristmas?event=${encodeURIComponent(selectedEvent)}`);
     return null;
