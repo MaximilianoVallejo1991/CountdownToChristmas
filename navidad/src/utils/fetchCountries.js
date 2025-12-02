@@ -1,4 +1,5 @@
-const API = "https://restcountries.com/v3.1/all";
+const API = "https://restcountries.com/v3.1/all?fields=name,flags,timezones,translations";
+
 
 export const fetchCountries = async () => {
   const response = await fetch(API);
