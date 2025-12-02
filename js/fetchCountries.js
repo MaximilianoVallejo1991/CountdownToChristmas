@@ -29,3 +29,6 @@ fetchData(`${API}/all?fields=name,flags,timezones`)
         });
     })
     .catch(error => console.error('Error al obtener los datos:', error));
+
+
+// comentario para redeploy forzado
