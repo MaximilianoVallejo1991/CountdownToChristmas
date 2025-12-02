@@ -9,7 +9,7 @@ function fetchData(urlApi) {
 const flagsContainer = document.getElementById('flags-container');
 
 // Petición a la API
-fetchData(`${API}/all`)
+fetchData(`${API}/all?fields=name,flags,timezones`)
     .then(response => response.json())
     .then(data => {
         data.forEach(country => {
