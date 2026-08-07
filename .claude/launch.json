@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "navidad-dev",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--dir", "navidad", "dev"],
+      "port": 5173
+    }
+  ]
+}
